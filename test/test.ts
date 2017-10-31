@@ -47,4 +47,14 @@ describe('Core', () => {
     expect(car(cdr(cdr(cdr(cdr(integers)))))).to.equal(5)
   })
 
+  it('filter', () => {
+    const l = makeList(1, 2, 3, 4, 5)
+    const even = filter(
+      item => item % 2 === 0,
+      l
+    )
+    expect(car(even)).to.equal(2)
+    expect(car(cdr(even))).to.equal(4)
+  })
+
 })

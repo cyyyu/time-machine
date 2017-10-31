@@ -37,9 +37,9 @@ export function filter(fn, list) {
   const val = car(list)
   return val ?
     fn(val) ?
-      val
+      makePair(val, () => filter(fn, cdr(list)))
       :
       filter(fn, cdr(list))
     :
-    ''
+    _emptyPair()
 }
