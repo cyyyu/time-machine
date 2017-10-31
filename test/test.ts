@@ -1,0 +1,50 @@
+import { expect } from 'chai'
+import {
+  makePair,
+  makeList,
+  car,
+  cdr,
+  map,
+  filter,
+} from '../src/core'
+
+describe('Core', () => {
+
+  it('pair', () => {
+    const p = makePair(1, () => 2)
+    expect(car(p)).to.equal(1)
+    expect(cdr(p)).to.equal(2)
+  })
+
+  it('list', () => {
+    const l = makeList(1, 2, 3, 4)
+    expect(car(l)).to.equal(1)
+    expect(car(cdr(l))).to.equal(2)
+    expect(car(cdr(cdr(l)))).to.equal(3)
+    expect(car(cdr(cdr(cdr(l))))).to.equal(4)
+    expect(car(cdr(cdr(cdr(cdr(l)))))).to.equal('')
+  })
+
+  it('map', () => {
+    const l = makeList(1, 2, 3, 4)
+    const double = item => item * 2
+    const doubledL = map(double, l)
+    expect(car(doubledL)).to.equal(2)
+    expect(car(cdr(doubledL))).to.equal(4)
+    expect(car(cdr(cdr(doubledL)))).to.equal(6)
+    expect(car(cdr(cdr(cdr(doubledL))))).to.equal(8)
+    expect(car(cdr(cdr(cdr(cdr(doubledL)))))).to.equal('')
+  })
+
+  it('integers', () => {
+    const makeIntegers = (startFrom) =>
+      makePair(startFrom, () => makeIntegers(startFrom + 1))
+    const integers = makeIntegers(1)
+    expect(car(integers)).to.equal(1)
+    expect(car(cdr(integers))).to.equal(2)
+    expect(car(cdr(cdr(integers)))).to.equal(3)
+    expect(car(cdr(cdr(cdr(integers))))).to.equal(4)
+    expect(car(cdr(cdr(cdr(cdr(integers)))))).to.equal(5)
+  })
+
+})
