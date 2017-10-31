@@ -6,6 +6,7 @@ import {
   cdr,
   map,
   filter,
+  ref,
 } from '../src/core'
 
 describe('Core', () => {
@@ -23,6 +24,14 @@ describe('Core', () => {
     expect(car(cdr(cdr(l)))).to.equal(3)
     expect(car(cdr(cdr(cdr(l))))).to.equal(4)
     expect(car(cdr(cdr(cdr(cdr(l)))))).to.equal('')
+  })
+
+  it('ref', () => {
+    const l = makeList(1, 2, 3, 4)
+    expect(ref(l, 0)).to.equal(1)
+    expect(ref(l, 1)).to.equal(2)
+    expect(ref(l, 2)).to.equal(3)
+    expect(ref(l, 3)).to.equal(4)
   })
 
   it('map', () => {
@@ -75,5 +84,5 @@ describe('Core', () => {
     expect(car(cdr(cdr(cdr(cdr(primes)))))).to.equal(11)
     expect(car(cdr(cdr(cdr(cdr(cdr(primes))))))).to.equal(13)
   })
-  
+
 })

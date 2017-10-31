@@ -43,3 +43,10 @@ export function filter(fn, list) {
     :
     _emptyPair()
 }
+
+export function ref(list, n) {
+  return n ?
+    ref(cdr(list), --n)
+    :
+    car(list)
+}
