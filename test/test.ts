@@ -57,4 +57,23 @@ describe('Core', () => {
     expect(car(cdr(even))).to.equal(4)
   })
 
+  it('infinite primes', () => {
+    const makeIntegers = (startFrom) =>
+      makePair(startFrom, () => makeIntegers(startFrom + 1))
+    const sieve = (num) =>
+      makePair(car(num), () =>
+        sieve(
+          filter(
+            item => !(item % car(num) === 0),
+            cdr(num)
+          )
+        ))
+    const primes = sieve(makeIntegers(2))
+    expect(car(cdr(primes))).to.equal(3)
+    expect(car(cdr(cdr(primes)))).to.equal(5)
+    expect(car(cdr(cdr(cdr(primes))))).to.equal(7)
+    expect(car(cdr(cdr(cdr(cdr(primes)))))).to.equal(11)
+    expect(car(cdr(cdr(cdr(cdr(cdr(primes))))))).to.equal(13)
+  })
+  
 })
