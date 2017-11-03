@@ -10,7 +10,6 @@ interface passager {
   state: any
 }
 
-// prototype
 class TimeMachine {
   private _passagers = fromJS({})
   private _states = fromJS({})
