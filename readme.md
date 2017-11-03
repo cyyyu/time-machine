@@ -1,5 +1,7 @@
 # Time Machine
 
+[![npm version](https://badge.fury.io/js/t-machine.svg)](https://badge.fury.io/js/t-machine)
+
 Take trips with magic.
 
 ### Usage
