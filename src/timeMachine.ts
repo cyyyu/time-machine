@@ -1,9 +1,5 @@
 import {
-  makeList,
   makePair,
-  car,
-  cdr,
-  filter,
   ref,
 } from './core'
 import { fromJS } from 'immutable'
