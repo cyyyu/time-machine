@@ -1,4 +1,4 @@
-interface Pair {
+export interface Pair {
   car: any
   cdr: () => any | Pair
 }
