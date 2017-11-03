@@ -1,8 +1,8 @@
 {
-  "name": "timemachine",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "t-machine",
+  "version": "0.1.0",
+  "description": "Time Machine",
+  "main": "dist/index.js",
   "scripts": {
     "test": "mocha -r ts-node/register test/**/*test.ts"
   },
@@ -18,5 +18,6 @@
   },
   "dependencies": {
     "immutable": "^3.8.2"
-  }
+  },
+  "types": "dist/index.d.ts"
 }
