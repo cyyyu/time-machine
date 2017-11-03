@@ -1,1 +1,2 @@
-export * from './TimeMachine'
+import TimeMachine from './TimeMachine'
+export default TimeMachine
