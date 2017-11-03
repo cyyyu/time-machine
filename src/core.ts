@@ -30,25 +30,6 @@ export function makeList(...args: any[]): Pair {
     _emptyPair()
 }
 
-export function map(fn: (item: any) => any, list: Pair): Pair {
-  const val = car(list)
-  return val ?
-    makePair(fn(val), () => map(fn, cdr(list)))
-    :
-    _emptyPair()
-}
-
-export function filter(fn: (item) => boolean, list: Pair): Pair {
-  const val = car(list)
-  return val ?
-    fn(val) ?
-      makePair(val, () => filter(fn, cdr(list)))
-      :
-      filter(fn, cdr(list))
-    :
-    _emptyPair()
-}
-
 export function ref(list: Pair, n: number) {
   return n ?
     ref(cdr(list), --n)
