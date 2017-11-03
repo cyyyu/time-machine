@@ -3,6 +3,7 @@
   "version": "0.1.1",
   "description": "Time Machine",
   "main": "dist/index.js",
+  "repository": "github:cyyyu/time-machine",
   "scripts": {
     "test": "mocha -r ts-node/register test/**/*test.ts"
   },
