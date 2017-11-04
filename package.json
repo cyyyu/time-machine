@@ -2,6 +2,10 @@
   "name": "t-machine",
   "version": "0.1.2",
   "description": "Time Machine",
+  "keywords": [
+    "time",
+    "machine"
+  ],
   "main": "dist/index.js",
   "repository": "github:cyyyu/time-machine",
   "scripts": {
