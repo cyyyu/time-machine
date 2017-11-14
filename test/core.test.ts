@@ -1,14 +1,7 @@
 import { expect } from 'chai'
-import {
-  makePair,
-  makeList,
-  car,
-  cdr,
-  ref,
-} from '../src/core'
+import { makePair, makeList, car, cdr, ref } from '../src/core'
 
 describe('Core', () => {
-
   it('pair', () => {
     const p = makePair(1, () => 2)
     expect(car(p)).to.equal(1)
@@ -22,5 +15,4 @@ describe('Core', () => {
     expect(ref(l, 2)).to.equal(3)
     expect(ref(l, 3)).to.equal(4)
   })
-
 })

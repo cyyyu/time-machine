@@ -1,11 +1,8 @@
-import {
-  expect
-} from 'chai'
+import { expect } from 'chai'
 import TimeMachine from '../src/timeMachine'
 import { fromJS } from 'immutable'
 
 describe('TimeMachine', () => {
-
   it('add passagers & travel', () => {
     const machine = new TimeMachine()
 
@@ -21,7 +18,7 @@ describe('TimeMachine', () => {
     }
 
     machine
-      .onBoard('father', father, (state) => {
+      .onBoard('father', father, state => {
         let newState = state
         if (state.get('age') < 89) {
           newState = state.set('age', state.get('age') + 1) // age grows by years
@@ -48,5 +45,4 @@ describe('TimeMachine', () => {
     expect(machine.travel(100).getIn(['father', 'age'])).to.equal(89)
     expect(machine.travel(100).getIn(['father', 'age'])).to.equal(89)
   })
-
 })

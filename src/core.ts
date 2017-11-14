@@ -24,15 +24,9 @@ const _emptyPair = () => makePair('', () => '')
 
 export function makeList(...args: any[]): Pair {
   const v = args[0]
-  return v ?
-    makePair(v, () => makeList(...args.slice(1)))
-    :
-    _emptyPair()
+  return v ? makePair(v, () => makeList(...args.slice(1))) : _emptyPair()
 }
 
 export function ref(list: Pair, n: number) {
-  return n ?
-    ref(cdr(list), --n)
-    :
-    car(list)
+  return n ? ref(cdr(list), --n) : car(list)
 }
