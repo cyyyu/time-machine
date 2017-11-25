@@ -21,6 +21,7 @@
     "husky": "^0.14.3",
     "lint-staged": "^4.3.0",
     "mocha": "^4.0.1",
+    "prettier": "^1.8.2",
     "ts-node": "^3.3.0",
     "typescript": "^2.5.3"
   },
