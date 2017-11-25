@@ -6,30 +6,46 @@ interface passager {
   name: string
   state: any
 }
+interface Changes {
+  [property: string]: (state, allStates?) => any
+}
 
 class TimeMachine {
   private _passagers = fromJS({})
   private _states = fromJS({})
-  private _v(state, fn = (state, allStates) => state) {
-    return lastState =>
-      makePair(state, () => this._v(fn(state, lastState), fn)(lastState))
+  private _changes: { [name: string]: Changes } = {}
+  private _v(state, name: string) {
+    let newState = state
+    // should change all passagers
+    this._passagers.map((ignore, name) => {
+      const changes = this._changes[name]
+      for (let path in changes) {
+        const realPath = [name].concat(path.split('.'))
+        newState = newState.setIn(
+          realPath,
+          changes[path](newState.getIn(realPath), state)
+        )
+      }
+    })
+    return makePair(state.get(name), () => this._v(newState, name))
   }
 
   public onBoard = (
     name: passager['name'],
     state: passager['state'],
-    fn?: (state, allStates?) => any
+    changes: Changes
   ): TimeMachine => {
-    if (this._passagers.get(name))
+    if (!!this._passagers.get(name))
       throw new Error('Passager is already onboard.')
-    this._passagers = this._passagers.set(name, this._v(fromJS(state), fn))
-    this._states = this.travel(0)
+    this._states = this._states.set(name, fromJS(state))
+    this._changes[name] = changes
+    this._passagers = this._passagers.set(name, this._v(this._states, name))
     return this
   }
 
-  public travel = (num: year, tmp = this._states) => {
-    const newState = this._passagers.map(i => ref(i(tmp), num))
-    return newState.equals(tmp) ? newState : this.travel(num, newState)
+  public travel = (num: year) => {
+    this._states = this._passagers.map(passager => ref(passager, num + 1))
+    return this._states
   }
 }
 
